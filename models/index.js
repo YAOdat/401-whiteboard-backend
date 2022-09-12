@@ -13,7 +13,7 @@ const POSTGRES_URL = process.env.DATABASE_URL
 const sequelizeOption = {
   dialectOptions: {
     ssl: {
-      require: true,
+      require: false,
       rejectUnauthorized: false
     }
   }
