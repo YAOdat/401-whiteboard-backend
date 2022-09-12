@@ -2,15 +2,8 @@
 
 const server = require('../server');
 const supertest = require('supertest');
-const {db} =  require('../models/index');
 const request = supertest(server.app);
 
-// beforeAll( async () =>{
-//     await db.sync();
-// })
-// afterAll( async () =>{
-//     await db.drop();
-// })
 
 describe('Server Test', () => {
     it("Home Page Test", async () => {
