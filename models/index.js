@@ -19,6 +19,7 @@ const sequelizeOption = {
   }
 }
 
+
 let sequelize = new Sequelize (POSTGRES_URL, sequelizeOption)
 
 module.exports = {
