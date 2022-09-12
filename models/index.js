@@ -10,7 +10,7 @@ dotenv.config()
 //process.env.DATABASE_URL 
 
 
-const POSTGRES_URL = postgres://odat:0000@localhost:5432/postgres
+const POSTGRES_URL = process.env.HEROKU_POSTGRESQL_MAUVE_URL
 
 const sequelizeOption = {
   dialectOptions: {
