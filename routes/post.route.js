@@ -30,7 +30,6 @@ async function getPost (req, res) {
 }
 
 async function createPost(req, res) {
-    console.log(req.body , 'print')
     const newPost = req.body;
     const post = await Post.create(newPost);
     res.status(201).json(post);
@@ -39,26 +38,26 @@ async function createPost(req, res) {
 
 
 //   async function updatePost(req, res) {
-//     // const id = req.params.id;
+//     const id = parseInt(req.params.id);
 //     const obj = req.body;
-//      const updatePost = await Post.update({ obj }, { where: {id: req.params.id} }); 
-//     console.log(req.body)
+//      let updatedPost = await Post.update({ obj: req.body.obj }, { where: {id:id} }); 
+    
 //     // Post.update({ obj: req.body.obj }, { where: {id: req.params.id} });
 
-
-//     res.status(200).json(updatePost);
+//     res.status(200).json(updatedPost);
 //   }
 
 
   async function updatePost(req, res) {
     const id = req.params.id;
-     const obj = req.body;
-     const post = await Post.findOne({
-        where: {id: id}
-      });
+    const obj = req.body;
+   
+   const post = await Post.findOne({
+    where: {id: req.params.id}
+   });
 
-    let updatePost = await Post.update(id, obj)
-  res.status(200).json(updatePost);
+   const updatedFood = await post.update(obj);
+    res.status(200).json(updatedFood);
 
 }
 

@@ -8,11 +8,11 @@ dotenv.config()
 
 // passing connection URL:
 
-const POSTGRES_URL = process.env.DATABASE_URL || "postgres://odat:0000@localhost:5432/postgres"
+const POSTGRES_URL = process.env.DATABASE_URL 
 
 
 
-let sequelize = new Sequelize (POSTGRES_URL, )
+let sequelize = new Sequelize (POSTGRES_URL)
 
 module.exports = {
     db: sequelize,
