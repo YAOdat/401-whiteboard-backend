@@ -3,8 +3,8 @@
 const express = require('express');
 const app = express()
 const cors = require('cors');
-const postRouter = require('./routes/post.route')
-const port = process.env.PORT || 4004
+const postRouter = require('./routes/post.route');
+const port = process.env.PORT || 4001;
 
 app.use(cors());
 app.use(express.json());
