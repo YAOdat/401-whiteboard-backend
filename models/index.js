@@ -7,8 +7,10 @@ const post = require ('./post.model')
 dotenv.config()
 
 // passing connection URL:
+//process.env.DATABASE_URL 
 
-const POSTGRES_URL = process.env.DATABASE_URL 
+
+const POSTGRES_URL = postgres://odat:0000@localhost:5432/postgres
 
 const sequelizeOption = {
   dialectOptions: {
