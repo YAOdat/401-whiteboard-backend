@@ -4,25 +4,30 @@
 const {Sequelize, DataTypes} = require('sequelize');
 const dotenv = require('dotenv')
 const post = require ('./post.model')
+const comment = require ('./comment.model')
+const collection = require('../collections/user-comment-routes');
+
 dotenv.config()
 
 // passing connection URL:
 
-const POSTGRES_URL = process.env.DATABASE_URL 
-
-const sequelizeOption = {
-  dialectOptions: {
-    ssl: {
-      require: true,
-      rejectUnauthorized: false
-    }
-  }
-}
+const POSTGRES_URL = process.env.DATABASE_URL
 
 
-let sequelize = new Sequelize (POSTGRES_URL, sequelizeOption)
+let sequelize = new Sequelize (POSTGRES_URL)
+const postModel = post(sequelize, DataTypes);
+const commentModel = comment(sequelize,DataTypes);
+
+
+postModel.hasMany(commentModel, {foreignKey: 'postID', sourceKey: 'id'}) 
+commentModel.belongsTo(postModel, {foreignKey: 'postID', targetKey: 'id'})
+
+const postCollection = new collection(postModel);
+const commentCollection =new collection(commentModel);
 
 module.exports = {
     db: sequelize,
-    Post: post(sequelize, DataTypes)
+    Post: postCollection,
+    Comment: commentCollection,
+    commentModel: commentModel
   }

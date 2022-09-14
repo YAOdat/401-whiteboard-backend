@@ -4,11 +4,13 @@ const express = require('express');
 const app = express()
 const cors = require('cors');
 const postRouter = require('./routes/post.route');
-const port = process.env.PORT || 4001;
+const commentRouter = require('./routes/comment.route');
+
 
 app.use(cors());
 app.use(express.json());
 app.use(postRouter);
+app.use(commentRouter);
 
 
 
