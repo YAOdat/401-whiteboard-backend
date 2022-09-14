@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const {Post} =require('../models/index')
+const {Post, Comment, commentModel} =require('../models/index')
 
 // Routes:
 
@@ -15,7 +15,7 @@ router.delete('/post/:id', deletePost);
 //Functions:
 
 async function getPosts (req, res) {
-    let post = await Post.findAll();
+    let post = await Post.read();
     res.status(200).json({
         post
     })
@@ -23,10 +23,9 @@ async function getPosts (req, res) {
 
 async function getPost (req, res) {
     let id = req.params.id;
-    let post = await Post.findOne({
-        where: {id:id}
-    });
-    res.status(200).json(post)
+    // let post = await Post.read(id);
+    let postWithComments = await Post.readPostComments(id, commentModel)
+    res.status(200).json(postWithComments)
 }
 
 async function createPost(req, res) {
@@ -60,7 +59,6 @@ async function createPost(req, res) {
     res.status(200).json(updatedFood);
 
 }
-
 
 
   async function deletePost(req, res) {
