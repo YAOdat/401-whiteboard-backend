@@ -10,6 +10,7 @@ const collection = require('../collections/user-comment-routes');
 dotenv.config()
 
 // passing connection URL:
+//process.env.DATABASE_URL 
 
 const POSTGRES_URL = process.env.DATABASE_URL
 
@@ -17,6 +18,10 @@ const POSTGRES_URL = process.env.DATABASE_URL
 let sequelize = new Sequelize (POSTGRES_URL)
 const postModel = post(sequelize, DataTypes);
 const commentModel = comment(sequelize,DataTypes);
+=======
+
+// const POSTGRES_URL = process.env.DATABASE_URL || process.env.HEROKU_POSTGRESQL_AMBER_URL
+
 
 
 postModel.hasMany(commentModel, {foreignKey: 'postID', sourceKey: 'id'}) 
@@ -31,3 +36,4 @@ module.exports = {
     Comment: commentCollection,
     commentModel: commentModel
   }
+
