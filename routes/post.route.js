@@ -35,18 +35,6 @@ async function createPost(req, res) {
   }
 
 
-
-//   async function updatePost(req, res) {
-//     const id = parseInt(req.params.id);
-//     const obj = req.body;
-//      let updatedPost = await Post.update({ obj: req.body.obj }, { where: {id:id} }); 
-    
-//     // Post.update({ obj: req.body.obj }, { where: {id: req.params.id} });
-
-//     res.status(200).json(updatedPost);
-//   }
-
-
   async function updatePost(req, res) {
     const id = req.params.id;
     const obj = req.body;
@@ -63,9 +51,7 @@ async function createPost(req, res) {
 
   async function deletePost(req, res) {
     const id = req.params.id;
-    let deletePost = await Post.destroy({
-      where: {id: id}
-    });
+    let deletePost = await Post.delete(id);
     res.status(204).json({deletePost});
   }
 
