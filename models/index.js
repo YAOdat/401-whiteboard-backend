@@ -12,10 +12,19 @@ dotenv.config()
 // passing connection URL:
 //process.env.DATABASE_URL 
 
-const POSTGRES_URL = process.env.DATABASE_URL
+const POSTGRES_URL = process.env.HEROKU_POSTGRESQL_AMBER_URL
+
+const sequelizeOptions = {
+  dialectOptions: {
+      ssl: {
+          require: true,
+          rejectUnauthorized: false
+      }
+  }
+};
 
 
-let sequelize = new Sequelize (POSTGRES_URL)
+let sequelize = new Sequelize (POSTGRES_URL, sequelizeOptions)
 const postModel = post(sequelize, DataTypes);
 const commentModel = comment(sequelize,DataTypes);
 =======
