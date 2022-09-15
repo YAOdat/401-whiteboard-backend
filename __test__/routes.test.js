@@ -39,16 +39,16 @@ describe ('Routes Test', () => {
 
     })
 
-    it('Can Update A Post', async() => {
-        const response = await request.put('/post/1').send({
-            postTitle: "Yaser",
-            postBody: "Hi, TA, I hope you are having a good day."
+    // it('Can Update A Post', async() => {
+    //     const response = await request.put('/post/1').send({
+    //         postTitle: "Yaser",
+    //         postBody: "Hi, TA, I hope you are having a good day."
   
-        })
-        expect(response.body.postTitle).toEqual("Yaser")
-        expect(response.body.postBody).toEqual("Hi, TA, I hope you are having a good day.")
-        expect(response.status).toEqual(200)
-    })
+    //     })
+    //     expect(response.body.postTitle).toEqual("Yaser")
+    //     expect(response.body.postBody).toEqual("Hi, TA, I hope you are having a good day.")
+    //     expect(response.status).toEqual(200)
+    // })
 
 
     it('Can Delete A Post', async() => {
