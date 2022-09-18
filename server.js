@@ -5,12 +5,13 @@ const app = express()
 const cors = require('cors');
 const postRouter = require('./routes/post.route');
 const commentRouter = require('./routes/comment.route');
-
+const userRouter = require('./routes/user.route')
 
 app.use(cors());
 app.use(express.json());
 app.use(postRouter);
 app.use(commentRouter);
+app.use(userRouter);
 
 
 
