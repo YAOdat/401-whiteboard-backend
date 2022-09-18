@@ -11,6 +11,7 @@ const users = require('./user.model')
 dotenv.config()
 
 // passing connection URL:
+//process.env.DATABASE_URL 
 
 const POSTGRES_URL = process.env.HEROKU_POSTGRESQL_AMBER_URL || process.env.DATABASE_URL
 
@@ -43,7 +44,6 @@ const userModel = users(sequelize, DataTypes);
 
 
 
-
 postModel.hasMany(commentModel, {foreignKey: 'postID', sourceKey: 'id'}) 
 commentModel.belongsTo(postModel, {foreignKey: 'postID', targetKey: 'id'})
 
@@ -57,3 +57,4 @@ module.exports = {
     commentModel: commentModel,
     userModel: userModel
   }
+
