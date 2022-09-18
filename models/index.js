@@ -6,30 +6,41 @@ const dotenv = require('dotenv')
 const post = require ('./post.model')
 const comment = require ('./comment.model')
 const collection = require('../collections/user-comment-routes');
+const users = require('./user.model')
 
 dotenv.config()
 
 // passing connection URL:
 //process.env.DATABASE_URL 
 
-const POSTGRES_URL = process.env.HEROKU_POSTGRESQL_AMBER_URL
+const POSTGRES_URL = process.env.HEROKU_POSTGRESQL_AMBER_URL || process.env.DATABASE_URL
 
-const sequelizeOptions = {
-  dialectOptions: {
-      ssl: {
-          require: true,
-          rejectUnauthorized: false
-      }
-  }
-};
+// const sequelizeOption = {
+//   dialectOptions: {
+//     ssl: {
+//       require: true,
+//       rejectUnauthorized: false
+//     }
+//   }
+// }
+
+// let sequelize = new Sequelize (POSTGRES_URL, sequelizeOption)
 
 
-let sequelize = new Sequelize (POSTGRES_URL, sequelizeOptions)
+
+
+let sequelize = new Sequelize (POSTGRES_URL)
+
+sequelize.authenticate().then(() => {
+  console.log('Database connected to postgres');
+}).catch((err) => {
+  console.log(err)
+});
+
 const postModel = post(sequelize, DataTypes);
 const commentModel = comment(sequelize,DataTypes);
-=======
+const userModel = users(sequelize, DataTypes);
 
-// const POSTGRES_URL = process.env.DATABASE_URL || process.env.HEROKU_POSTGRESQL_AMBER_URL
 
 
 
@@ -43,6 +54,7 @@ module.exports = {
     db: sequelize,
     Post: postCollection,
     Comment: commentCollection,
-    commentModel: commentModel
+    commentModel: commentModel,
+    userModel: userModel
   }
 
