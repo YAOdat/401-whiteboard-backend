@@ -37,10 +37,6 @@ const postModel = post(sequelize, DataTypes);
 const commentModel = comment(sequelize,DataTypes);
 const userModel = users(sequelize, DataTypes);
 
-
-
-
-
 postModel.hasMany(commentModel, {foreignKey: 'postID', sourceKey: 'id'}) 
 commentModel.belongsTo(postModel, {foreignKey: 'postID', targetKey: 'id'})
 
