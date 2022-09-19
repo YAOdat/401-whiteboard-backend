@@ -14,21 +14,18 @@ dotenv.config()
 
 const POSTGRES_URL = process.env.HEROKU_POSTGRESQL_AMBER_URL || process.env.DATABASE_URL
 
-// const sequelizeOption = {
-//   dialectOptions: {
-//     ssl: {
-//       require: true,
-//       rejectUnauthorized: false
-//     }
-//   }
-// }
+const sequelizeOption = {
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  }
+}
 
-// let sequelize = new Sequelize (POSTGRES_URL, sequelizeOption)
-
-
+let sequelize = new Sequelize (POSTGRES_URL, sequelizeOption)
 
 
-let sequelize = new Sequelize (POSTGRES_URL)
 
 sequelize.authenticate().then(() => {
   console.log('Database connected to postgres');
