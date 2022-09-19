@@ -1,7 +1,6 @@
 'use strict';
 
 const User = require('../models').userModel;
-
 const saveUser = async (req, res, next) => {
   try {
     // Search for the username in the Database
@@ -33,7 +32,6 @@ const saveUser = async (req, res, next) => {
   }
 
 }
-
 module.exports = {
   saveUser
 }

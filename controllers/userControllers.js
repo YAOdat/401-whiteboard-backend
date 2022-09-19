@@ -1,9 +1,7 @@
 'use strict';
 const bcrypt = require('bcrypt');
 const base64 = require('base-64');
-
 const User = require('../models').userModel;
-
 const signup = async (req, res) => {
   try {
     const { userName, email, password } = req.body;
@@ -22,7 +20,6 @@ const signup = async (req, res) => {
     console.log(e)
   }
 }
-
 const signin = async (req, res) => {
   const basicHeader = req.headers.authorization.split(' ');
   const encodedValue = basicHeader.pop();
@@ -46,12 +43,10 @@ const signin = async (req, res) => {
     return res.status(401).send('You are not authorized');
   }
 }
-
 const allUser = async (req, res) => {
   const users = await User.findAll();
   res.json(users);
 }
-
 module.exports = {
   signup,
   allUser,
