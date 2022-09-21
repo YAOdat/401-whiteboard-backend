@@ -1,6 +1,6 @@
 'use strict';
 
-const Post = (sequelize, DataTypes) => sequelize.define('PostTable', {
+const Post = (sequelize, DataTypes) => sequelize.define('NewPostsTable', {
   postTitle: {
     type: DataTypes.STRING,
     allowNull: false
@@ -8,6 +8,14 @@ const Post = (sequelize, DataTypes) => sequelize.define('PostTable', {
   postBody: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  userName: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  userID: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
   },
 })
 
