@@ -14,7 +14,6 @@ module.exports = async (req,res, next) => {
     try {
         const validUser = await userModel.authenticateToken(token);
         const userInfo = await userModel.findOne({where: {userName: validUser.userName}});
-
         if(userInfo) {
           req.user = userInfo;
           req.token = userInfo.token

@@ -1,5 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { userModel } = require('../models');
+const bearerAuth = require('../middlewares/bearer-auth')
+const adminAuth = require('../middlewares/acl')
 
 const {Post, Comment, commentModel} =require('../models/index')
 
@@ -9,7 +12,7 @@ router.get('/post', getPosts);
 router.get('/post/:id', getPost);
 router.post('/post', createPost);
 router.put('/post/:id', updatePost);
-router.delete('/post/:id', deletePost);
+router.delete('/post/:id', adminAuth, deletePost);
 
 
 //Functions:
@@ -51,8 +54,9 @@ async function createPost(req, res) {
 
   async function deletePost(req, res) {
     const id = req.params.id;
-    let deletePost = await Post.delete(id);
-    res.status(204).json({deletePost});
+      let deletePost = await Post.delete(id);
+      res.status(204).json({deletePost});
+  
   }
 
 module.exports = router;
