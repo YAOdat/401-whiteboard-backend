@@ -4,8 +4,6 @@ const { userModel } = require("../models");
 
 
 module.exports = async (req,res, next) => {
-    console.log('Testing bearer');
-    console.log(req.headers.authorization, 'token')
     if(!req.headers.authorization){
        return next('You are not authorized!')
     }
