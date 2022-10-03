@@ -42,11 +42,7 @@ async function createPost(req, res) {
     const id = req.params.id;
     const obj = req.body;
    
-   const post = await Post.findOne({
-    where: {id: req.params.id}
-   });
-
-   const updatedFood = await post.update(obj);
+   const updatedFood = await Post.update(id, obj);
     res.status(200).json(updatedFood);
 
 }
